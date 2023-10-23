@@ -47,6 +47,22 @@ public class Board {
 
     public String toString() {
 
-        return "X";
+        //char aChar = 'X';
+        System.out.printf("         ");
+        for( int col = 1; col <= this.cols; col++ )
+        {
+            System.out.printf("Col%2d   ", col);
+        }
+        System.out.printf("%n");
+
+        for( int row = 0; row < this.rows; row++ )
+        {
+            System.out.printf("Row%2d  |",row+1);
+            for( int col = 0; col < this.cols; col++ )
+            {
+                System.out.printf("   %C   |", this.board[row][col] );
+            }
+            System.out.printf("%n");
+        }
     }
 }
