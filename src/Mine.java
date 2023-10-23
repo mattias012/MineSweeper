@@ -8,7 +8,7 @@ public class Mine {
     public Mine(int x, int y){
         this.x = x;
         this.y = y;
-        this.symbol = "*";
+        this.symbol = "O";
     }
 
 }
