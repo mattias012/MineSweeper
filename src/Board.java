@@ -6,7 +6,18 @@ public class Board {
     private ArrayList<Mine> mines;
     private int numberOfMines;
 
+    // Added a member variable to hold the number of columns in gameboard
+    private int cols;
+
+    // Added a member variable to hold the number of rows in gameboard
+    private int rows;
+
+
     public Board(int x, int y) {
+
+        // Added 2 calls to setter methods for rows and cols to instantiate variables
+        setRows(y);
+        setCols(x);
 
         this.gameboard = new int[x][y];
         this.mines = new ArrayList<>();
@@ -18,6 +29,27 @@ public class Board {
         this.numberOfMines = mines;
 
     }
+
+    // Added a setter method for member variable cols
+    private void setCols(int cols){
+        this.cols = cols;
+    }
+
+    // Added a getter method for member variable cols
+    private int getCols(){
+        return this.cols;
+    }
+
+    // Added a setter method for member variable rows
+    private void setRows( int rows ){
+        this.rows = rows;
+    }
+
+    // Added a getter method for member variable rows
+    private int getRows(){
+        return this.rows;
+    }
+
 
     private int getNumberOfMines() {
         return this.numberOfMines;
@@ -45,7 +77,10 @@ public class Board {
         return false;
     }
 
-    public String toString() {
+    // Changed the method to print the whole board
+    // instead of a method just returning a string
+    //public String toString() {
+    public void printBoard() {
 
         //char aChar = 'X';
         System.out.printf("         ");
@@ -60,7 +95,7 @@ public class Board {
             System.out.printf("Row%2d  |",row+1);
             for( int col = 0; col < this.cols; col++ )
             {
-                System.out.printf("   %C   |", this.board[row][col] );
+                System.out.printf("   %C   |", this.gameboard[row][col] );
             }
             System.out.printf("%n");
         }
