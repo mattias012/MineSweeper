@@ -9,6 +9,7 @@ public class Board {
     public Board(int x, int y) {
 
         this.gameboard = new int[x][y];
+        this.mines = new ArrayList<>();
 
     }
 
