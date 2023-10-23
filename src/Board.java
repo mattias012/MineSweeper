@@ -34,6 +34,16 @@ public class Board {
         //add mines to board
     }
 
+    public boolean checkWin(){
+
+        return false;
+    }
+
+    public boolean checkIfHit(){
+
+        return false;
+    }
+
     public String toString() {
 
         return "X";
