@@ -106,7 +106,7 @@ public class Board {
         boolean foundMine = false;
 
         for (Mine mine : mines){
-            //check if mine exist 
+            //check if mine exist
         }
 
 
