@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Math.random;
+
 public class Board {
 
     private char[][] gameboard;
@@ -22,7 +24,6 @@ public class Board {
         // Added 2 calls to setter methods for rows and cols to instantiate variables
         setRows(y);
         setCols(x);
-
 
         //Create gameboard
         this.gameboard = new char[x][y];
@@ -77,50 +78,69 @@ public class Board {
         setNumberOfMines(setThisNumberOfMines);
 
         //Random number for x and y coordinates depending on board size
-        Random random = new Random();
+        //Random random = new Random();
 
         //Create new mines
         for (int i = 0; i < setThisNumberOfMines; i++) {
 
-            while () {
-                int randomRow = random.nextInt(this.rows);
-                int randomCol = random.nextInt(this.cols);
+            boolean continueCreate = true;
+            while (continueCreate) {
+                int randomRow = getRandomNumber(1, this.rows);
+                int randomCol = getRandomNumber(1, this.cols);
 
-                isThisPositionAMineAlready(randomRow, randomCol);
+                if (!isThisPositionAMine(randomRow, randomCol)) {
 
-
-                Mine newMine = new Mine(randomRow, randomCol);
-                // add to mineList?
+                    Mine newMine = new Mine(randomRow, randomCol);
+                    // add to mineList
+                    this.mines.add(newMine);
+                    continueCreate = false;
+                }
             }
         }
-        //add mines to board
     }
 
     public List<Mine> getMines() {
-        return mines;
+        return this.mines;
     }
 
-    private boolean isThisPositionAMineAlready(int row, int col){
+    private boolean isThisPositionAMine(int row, int col) {
 
         //List<Mine> mines = getMines();
         boolean foundMine = false;
 
-        for (Mine mine : mines){
-            //check if mine exist
+        for (Mine mine : this.mines) {
+
+            if (row == mine.getRow() && col == mine.getCol()) {
+                foundMine = true;
+            }
         }
-
-
         return foundMine;
     }
-
+    private int getRandomNumber(int min, int max) {
+        return (int) ((random() * (max - min)) + min);
+    }
     public boolean checkWin() {
 
         return false;
     }
 
-    public boolean checkIfHit() {
+    public boolean checkIfHit(int row, int col) {
 
-        return false;
+        return isThisPositionAMine(row, col);
+    }
+
+    public void markPlayerChoice(int row, int col) {
+
+        this.gameboard[row - 1][col - 1] = 'X';
+    }
+
+    public void showAllMines() {
+
+        for (Mine mine : this.mines) {
+
+            this.gameboard[mine.getRow()-1][mine.getCol()-1] = mine.getSymbol();
+
+        }
     }
 
     // Changed the method to print the whole board

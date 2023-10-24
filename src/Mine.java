@@ -1,14 +1,25 @@
 public class Mine {
 
-    private int x;
-    private int y;
+    private int row;
+    private int col;
 
-    private String symbol;
+    private char symbol;
 
-    public Mine(int x, int y){
-        this.x = x;
-        this.y = y;
-        this.symbol = "O";
+    public Mine(int row, int col){
+        this.row = row;
+        this.col = col;
+        this.symbol = 'O';
     }
 
+    public char getSymbol(){
+        return this.symbol;
+    }
+
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
 }
