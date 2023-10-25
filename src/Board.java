@@ -78,9 +78,6 @@ public class Board {
 
         setNumberOfMines(setThisNumberOfMines);
 
-        //Random number for x and y coordinates depending on board size
-        //Random random = new Random();
-
         //Create new mines
         for (int i = 0; i < setThisNumberOfMines; i++) {
 
