@@ -6,9 +6,12 @@ public class Main {
         //Create scanner
         Scanner scanner = new Scanner(System.in);
 
-        final double PERCENTAGE_HARD = 0.6;
-        final double PERCENTAGE_MEDIUM = 0.4;
-        final double PERCENTAGE_EASY = 0.4;
+        //Set levels and minimum sizes
+        final double PERCENTAGE_HARD = 0.75;
+        final double PERCENTAGE_MEDIUM = 0.5;
+        final double PERCENTAGE_EASY = 0.25;
+        final int MINIMUM_ROWS = 2;
+        final int MINIMUM_COLS = 2;
 
         //Welcome message and setup board
         System.out.println("Welcome to Mine Sweeper!");
@@ -20,7 +23,7 @@ public class Main {
         System.out.print("Number of rows: ");
         int numberOfRows = checkInputIsANumber(scanner);
 
-        //Create bpard
+        //Create board
         Board board = new Board(numberOfColumns, numberOfRows);
 
         //Initialize the board
@@ -33,15 +36,13 @@ public class Main {
 
         int numberOfMines;
 
-        if (selectedLevel == 3){
+        if (selectedLevel == 3) {
             //Hard
             numberOfMines = (int) (PERCENTAGE_HARD * numberOfRows * numberOfColumns);
-        }
-        else if (selectedLevel == 2){
+        } else if (selectedLevel == 2) {
             //Medium
             numberOfMines = (int) (PERCENTAGE_MEDIUM * numberOfRows * numberOfColumns);
-        }
-        else {
+        } else {
             //Easy
             numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
         }
@@ -52,24 +53,30 @@ public class Main {
         //Print board
         board.printBoard();
 
+        //Play the game
         boolean playing = true;
         while (playing) {
+
             System.out.println("Select column: ");
-            int col = checkInputIsANumber(scanner);
+            int col = board.posExistAndIsNotTakenAlready(scanner, "col");
+
             System.out.println("Select row: ");
-            int row = checkInputIsANumber(scanner);
+
+            int row = board.posExistAndIsNotTakenAlready(scanner, "row");
+
 
             if (board.checkIfHit(row, col)) {
                 System.out.println("Game Over");
                 playing = false;
                 board.showAllMines();
-            }
-            else {
+            } else {
                 board.markPlayerChoice(row, col);
             }
             board.printBoard();
         }
     }
+
+    //Error handling methods
     public static int checkInputIsANumber(Scanner scanner) {
 
         while (true) {
@@ -82,6 +89,8 @@ public class Main {
             }
         }
     }
+
+    //Error handling when selecting level of difficulty.
     public static int checkLevelChoice(Scanner scanner) {
 
         while (true) {

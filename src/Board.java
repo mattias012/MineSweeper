@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import static java.lang.Math.random;
 
@@ -101,6 +102,25 @@ public class Board {
 
     public List<Mine> getMines() {
         return this.mines;
+    }
+    protected int posExistAndIsNotTakenAlready(Scanner scanner, String rowOrCol){
+
+        int pos = Main.checkInputIsANumber(scanner);
+        if (rowOrCol.equals("col")){
+
+            while (pos > this.cols){
+                System.out.println("Make sure the column exist. Try again");
+                pos = Main.checkInputIsANumber(scanner);
+            }
+        }
+        else {
+            while (pos > this.rows){
+                System.out.println("Make sure the row exist. Try again");
+                pos = Main.checkInputIsANumber(scanner);
+            }
+        }
+
+        return pos;
     }
 
     private boolean isThisPositionAMine(int row, int col) {
