@@ -10,18 +10,23 @@ public class Main {
         final double PERCENTAGE_HARD = 0.75;
         final double PERCENTAGE_MEDIUM = 0.5;
         final double PERCENTAGE_EASY = 0.25;
-        final int MINIMUM_ROWS = 2;
-        final int MINIMUM_COLS = 2;
+        final int MINIMUM_ROWS = 3;
+        final int MINIMUM_COLS = 3;
 
         //Welcome message and setup board
         System.out.println("Welcome to Mine Sweeper!");
-        System.out.println("How large battlefield do you want?\n");
+        System.out.println("How large battlefield do you want? (minimum "+ MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
+
+        int numberOfRows;
+        int numberOfColumns;
 
         //Setup board
-        System.out.print("Number of columns: ");
-        int numberOfColumns = checkInputIsANumber(scanner);
-        System.out.print("Number of rows: ");
-        int numberOfRows = checkInputIsANumber(scanner);
+        do {
+            System.out.print("Number of columns: ");
+            numberOfColumns = checkInputIsANumber(scanner);
+            System.out.print("Number of rows: ");
+            numberOfRows = checkInputIsANumber(scanner);
+        } while (numberOfColumns < MINIMUM_COLS && numberOfRows < MINIMUM_ROWS);
 
         //Create board
         Board board = new Board(numberOfColumns, numberOfRows);
