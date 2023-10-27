@@ -20,14 +20,14 @@ public class Board {
     private String symbol;
 
 
-    public Board(int x, int y) {
+    public Board(int cols, int rows) {
 
         // Added 2 calls to setter methods for rows and cols to instantiate variables
-        setRows(y);
-        setCols(x);
+        setRows(rows);
+        setCols(cols);
 
         //Create gameboard
-        this.gameboard = new char[x][y];
+        this.gameboard = new char[cols][rows];
         this.mines = new ArrayList<>();
         this.symbol = " ";
 
@@ -67,8 +67,8 @@ public class Board {
     public void initBoard() {
 
         //Set blank space for board
-        for (int i = 0; i < this.rows; i++) {
-            for (int j = 0; j < this.cols; j++) {
+        for (int i = 0; i < this.cols; i++) {
+            for (int j = 0; j < this.rows; j++) {
                 this.gameboard[i][j] = ' ';
             }
         }
@@ -148,14 +148,14 @@ public class Board {
 
     public void markPlayerChoice(int row, int col) {
 
-        this.gameboard[row - 1][col - 1] = 'X';
+        this.gameboard[col - 1][row - 1] = 'X';
     }
 
     public void showAllMines() {
 
         for (Mine mine : this.mines) {
 
-            this.gameboard[mine.getRow()-1][mine.getCol()-1] = mine.getSymbol();
+            this.gameboard[mine.getCol()-1][mine.getRow()-1] = mine.getSymbol();
 
         }
     }
@@ -175,7 +175,7 @@ public class Board {
         for (int row = 0; row < this.rows; row++) {
             System.out.printf("Row%2d  |", row + 1);
             for (int col = 0; col < this.cols; col++) {
-                System.out.printf("   %C   |", this.gameboard[row][col]);
+                System.out.printf("   %C   |", this.gameboard[col][row]);
             }
             System.out.printf("%n");
         }
