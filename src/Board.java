@@ -148,7 +148,51 @@ public class Board {
 
     public void markPlayerChoice(int row, int col) {
 
-        this.gameboard[col - 1][row - 1] = 'X';
+        char adjacentMines = '0';
+        // first row of board
+        if ( row == 1 )
+        {
+            // first column of board
+            if ( col == 1 )
+            {
+                if ( isThisPositionAMine( 1,2 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( 2,1 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( 2,2 ) ) adjacentMines += 1;
+            }
+            else
+            {
+                // last column of board
+                if ( col == this.cols )
+                {
+                    if ( isThisPositionAMine( 1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 2,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 2, col ) ) adjacentMines += 1;
+                }
+                else
+                {
+                    // inside the board
+                    if ( isThisPositionAMine( 1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 1,col+1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 2,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 2,col ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( 2,col+1 ) ) adjacentMines += 1;
+                }
+            }
+        }
+
+        if ( row > 1 && row < this.rows )
+        {
+            // inside the board
+        }
+
+        // last row of board
+        if ( row == this.rows )
+        {
+
+        }
+
+
+        this.gameboard[col - 1][row - 1] = adjacentMines;
     }
 
     public void showAllMines() {

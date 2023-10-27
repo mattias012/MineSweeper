@@ -8,7 +8,7 @@ public class Mine {
     public Mine(int row, int col){
         this.row = row;
         this.col = col;
-        this.symbol = 'O';
+        this.symbol = 'M';
     }
 
     public char getSymbol(){
