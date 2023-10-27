@@ -134,7 +134,7 @@ public class Board {
         return foundMine;
     }
     private int getRandomNumber(int min, int max) {
-        return (int) ((random() * (max - min)) + min);
+        return (int) ((random() * (max - min + 1 )) + min);
     }
     public boolean checkWin() {
 
@@ -149,6 +149,7 @@ public class Board {
     public void markPlayerChoice(int row, int col) {
 
         char adjacentMines = '0';
+
         // first row of board
         if ( row == 1 )
         {
@@ -180,14 +181,73 @@ public class Board {
             }
         }
 
+        // inside the board
         if ( row > 1 && row < this.rows )
         {
-            // inside the board
+            // first column of board
+            if ( col == 1 )
+            {
+                if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row-1,col+1 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row+0,col+1 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row+1,col+0 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row+1,col+1 ) ) adjacentMines += 1;
+            }
+            else
+            {
+                // last column of board
+                if ( col == this.cols )
+                {
+                    if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+0,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+1,col+0 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+1,col-1 ) ) adjacentMines += 1;
+                }
+                else
+                {
+                    // inside the board
+                    if ( isThisPositionAMine( row-1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col+1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+0,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+0,col+1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+1,col+0 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+1,col+1 ) ) adjacentMines += 1;
+                }
+            }
         }
 
         // last row of board
         if ( row == this.rows )
         {
+            // first column of board
+            if ( col == 1 )
+            {
+                if ( isThisPositionAMine( row-0,col+1 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                if ( isThisPositionAMine( row-1,col+1 ) ) adjacentMines += 1;
+            }
+            else
+            {
+                // last column of board
+                if ( col == this.cols )
+                {
+                    if ( isThisPositionAMine( row+0,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                }
+                else
+                {
+                    // inside the board
+                    if ( isThisPositionAMine( row+0,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row+0,col+1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col-1 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col+0 ) ) adjacentMines += 1;
+                    if ( isThisPositionAMine( row-1,col+1 ) ) adjacentMines += 1;
+                }
+            }
 
         }
 
