@@ -49,7 +49,8 @@ public class Main {
             numberOfMines = (int) (PERCENTAGE_MEDIUM * numberOfRows * numberOfColumns);
         } else {
             //Easy
-            numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
+            //numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
+            numberOfMines = 1;
         }
 
         //Set the mines to the board
@@ -69,14 +70,18 @@ public class Main {
 
             int row = board.posExistAndIsNotTakenAlready(scanner, "row");
 
-
             if (board.checkIfHit(row, col)) {
                 System.out.println("Game Over");
                 playing = false;
                 board.showAllMines();
             } else {
                 board.markPlayerChoice(row, col);
+                if (board.checkIfWin()){
+                    System.out.println("\n *** Congratulations! You have found all mines, that is not easy - well done! ***\n");
+                    playing = false;
+                }
             }
+            //Print board
             board.printBoard();
         }
     }

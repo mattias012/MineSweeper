@@ -136,10 +136,7 @@ public class Board {
     private int getRandomNumber(int min, int max) {
         return (int) ((random() * (max - min + 1 )) + min);
     }
-    public boolean checkWin() {
 
-        return false;
-    }
 
     public boolean checkIfHit(int row, int col) {
 
@@ -262,6 +259,30 @@ public class Board {
             this.gameboard[mine.getCol()-1][mine.getRow()-1] = mine.getSymbol();
 
         }
+    }
+
+    protected boolean checkIfWin(){
+
+        boolean isWin = false;
+
+        int numberOfMines = mines.size();
+        int sumOfBoxesLeftToSelect = 0;
+        int numberOfBoxes = this.rows * this.cols;
+
+
+        for (int i = 0; i < this.cols; i++) {
+            for (int j = 0; j < this.rows; j++) {
+                if (this.gameboard[i][j] != ' '){
+                    sumOfBoxesLeftToSelect++;
+                }
+            }
+        }
+
+        if (sumOfBoxesLeftToSelect == (numberOfBoxes-numberOfMines) ){
+            isWin = true;
+        }
+
+        return isWin;
     }
 
     // Changed the method to print the whole board
