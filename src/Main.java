@@ -35,6 +35,7 @@ public class Main {
         board.initBoard();
 
         //Create mines depending on level
+        System.out.println();
         System.out.println("1. Easy, 2. Medium, 3. Hard");
         System.out.print("Select level: ");
         int selectedLevel = checkLevelChoice(scanner);
@@ -62,10 +63,10 @@ public class Main {
         boolean playing = true;
         while (playing) {
 
-            System.out.println("Select column: ");
+            System.out.print("Select column: ");
             int col = board.posExistAndIsNotTakenAlready(scanner, "col");
 
-            System.out.println("Select row: ");
+            System.out.print("Select row: ");
 
             int row = board.posExistAndIsNotTakenAlready(scanner, "row");
 
