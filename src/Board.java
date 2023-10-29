@@ -269,6 +269,16 @@ public class Board {
     //public String toString() {
     public void printBoard() {
 
+        for (int col = 0; col < this.cols; col++) {
+            System.out.print("----");
+        }
+        System.out.print(" Mine Sweeper ");
+        for (int col = 0; col < this.cols; col++) {
+            System.out.print("----");
+        }
+        System.out.println();
+        System.out.println();
+
         //char aChar = 'X';
         System.out.printf("         ");
         for (int col = 1; col <= this.cols; col++) {
@@ -277,11 +287,26 @@ public class Board {
         System.out.printf("%n");
 
         for (int row = 0; row < this.rows; row++) {
+
+            System.out.print("        ");
+            for (int col = 0; col < this.cols; col++) {
+                System.out.print("------- ");
+                if (col == this.cols-1){
+                    System.out.println();
+                }
+            }
+
             System.out.printf("Row%2d  |", row + 1);
             for (int col = 0; col < this.cols; col++) {
                 System.out.printf("   %C   |", this.gameboard[col][row]);
             }
             System.out.printf("%n");
         }
+        System.out.print("        ");
+        for (int col = 0; col < this.cols; col++) {
+            System.out.print("------- ");
+        }
+        System.out.println();
+        System.out.println();
     }
 }
