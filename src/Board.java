@@ -239,7 +239,16 @@ public class Board {
         //Only called when adjacentMines = 0
         //method inside method
         if (adjacentMines == '0') {
+            markPlayerChoice( row - 1, col - 1);
+            markPlayerChoice( row - 1, col + 0);
+            markPlayerChoice( row - 1, col + 1);
+            markPlayerChoice( row + 0, col - 1);
+            markPlayerChoice( row + 0, col + 1);
+            markPlayerChoice( row + 1, col - 1);
+            markPlayerChoice( row + 1, col + 0);
+            markPlayerChoice( row + 1, col + 1);
 
+            /*
             if (col == 1) {
                 if (row == 1) {
                     markPlayerChoice(row, col + 1);
@@ -287,6 +296,8 @@ public class Board {
                 markPlayerChoice(row + 1, col);
                 markPlayerChoice(row + 1, col + 1);
             }
+
+             */
         }
     }
 
