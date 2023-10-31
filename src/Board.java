@@ -148,6 +148,10 @@ public class Board {
 
         char adjacentMines = '0';
 
+        if( row == 0 || row > this.rows ) return;
+        if( col == 0 || col > this.cols ) return;
+        if ( this.gameboard[ col - 1 ][ row - 1 ] != ' ' ) return;
+
         // first row of board
         if (row == 1) {
             // first column of board
@@ -234,7 +238,7 @@ public class Board {
         //Open up empty boxes
         //Only called when adjacentMines = 0
         //method inside method
-        if (adjacentMines == 0) {
+        if (adjacentMines == '0') {
 
             if (col == 1) {
                 if (row == 1) {
