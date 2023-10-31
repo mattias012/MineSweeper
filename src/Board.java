@@ -125,6 +125,8 @@ public class Board {
         //List<Mine> mines = getMines();
         boolean foundMine = false;
 
+        if (row < 1 || row > this.rows || col < 1 || col > this.cols ) return false;
+
         for (Mine mine : this.mines) {
 
             if (row == mine.getRow() && col == mine.getCol()) {
@@ -152,6 +154,17 @@ public class Board {
         if( col == 0 || col > this.cols ) return;
         if ( this.gameboard[ col - 1 ][ row - 1 ] != ' ' ) return;
 
+        if (isThisPositionAMine(row - 1, col - 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row - 1, col + 0 )) adjacentMines += 1;
+        if (isThisPositionAMine(row - 1, col + 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 0, col - 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 0, col + 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 1, col - 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 1, col + 0 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 1, col + 1 )) adjacentMines += 1;
+
+
+        /*
         // first row of board
         if (row == 1) {
             // first column of board
@@ -231,7 +244,7 @@ public class Board {
             }
 
         }
-
+        */
 
         this.gameboard[col - 1][row - 1] = adjacentMines;
 
