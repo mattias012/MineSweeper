@@ -1,7 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
+    //Variables for the colored text
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
     public static void main(String[] args) {
+
+
 
         //Create scanner
         Scanner scanner = new Scanner(System.in);
@@ -14,7 +21,7 @@ public class Main {
         final int MINIMUM_COLS = 3;
 
         //Welcome message and setup board
-        System.out.println("Welcome to Mine Sweeper!");
+        System.out.println(ANSI_RED +"Welcome to Mine Sweeper!" + ANSI_RESET);
 
         //Create player name
         System.out.println();
@@ -45,7 +52,7 @@ public class Main {
 
         //Create mines depending on level
         System.out.println();
-        System.out.println("1. Easy, 2. Medium, 3. Hard");
+        System.out.println(ANSI_GREEN + "1. Easy, " + ANSI_YELLOW +  "2. Medium, " + ANSI_RED + "3. Hard" + ANSI_RESET);
         System.out.print("Select level: ");
         int selectedLevel = checkLevelChoice(scanner);
 
