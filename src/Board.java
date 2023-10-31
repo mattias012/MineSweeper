@@ -105,13 +105,13 @@ public class Board {
         int pos = Main.checkInputIsANumber(scanner);
         if (rowOrCol.equals("col")){
 
-            while (pos > this.cols){
+            while (pos > this.cols || pos < 1){
                 System.out.println("Make sure the column exist. Try again");
                 pos = Main.checkInputIsANumber(scanner);
             }
         }
         else {
-            while (pos > this.rows){
+            while (pos > this.rows || pos < 1){
                 System.out.println("Make sure the row exist. Try again");
                 pos = Main.checkInputIsANumber(scanner);
             }

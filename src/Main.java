@@ -15,7 +15,15 @@ public class Main {
 
         //Welcome message and setup board
         System.out.println("Welcome to Mine Sweeper!");
-        System.out.println("How large battlefield do you want? (minimum "+ MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
+
+        //Create player name
+        System.out.println();
+        System.out.print("Please enter your name: ");
+        String playerName = scanner.nextLine();
+        Player player = new Player(playerName);
+        System.out.println();
+
+        System.out.println("How large battlefield do you want "+ player.getName() + "? (minimum "+ MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
 
         int numberOfRows;
         int numberOfColumns;
@@ -27,6 +35,7 @@ public class Main {
             System.out.print("Number of rows: ");
             numberOfRows = checkInputIsANumber(scanner);
         } while (numberOfColumns < MINIMUM_COLS && numberOfRows < MINIMUM_ROWS);
+
 
         //Create board
         Board board = new Board(numberOfColumns, numberOfRows);
@@ -72,13 +81,14 @@ public class Main {
             int row = board.posExistAndIsNotTakenAlready(scanner, "row");
 
             if (board.checkIfHit(row, col)) {
-                System.out.println("Game Over");
+                System.out.println(player.getName() + ", you hit a mine!\nGame Over!!!");
                 playing = false;
                 board.showAllMines();
-            } else {
+            }
+            else {
                 board.markPlayerChoice(row, col);
                 if (board.checkIfWin()){
-                    System.out.println("\n *** Congratulations! You have found all mines, that is not easy - well done! ***\n");
+                    System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
                     playing = false;
                 }
             }
