@@ -7,9 +7,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         //Set levels and minimum sizes
-        final double PERCENTAGE_HARD = 0.75;
-        final double PERCENTAGE_MEDIUM = 0.5;
-        final double PERCENTAGE_EASY = 0.25;
+        final double PERCENTAGE_HARD = 0.4;
+        final double PERCENTAGE_MEDIUM = 0.25;
+        final double PERCENTAGE_EASY = 0.1;
         final int MINIMUM_ROWS = 3;
         final int MINIMUM_COLS = 3;
 
@@ -90,6 +90,7 @@ public class Main {
                 if (board.checkIfWin()){
                     System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
                     playing = false;
+                    board.showAllMines();
                 }
             }
             //Print board
