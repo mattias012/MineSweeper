@@ -80,6 +80,7 @@ public class Main {
 
         //Play the game
         boolean playing = true;
+        boolean aWin = false;
         while (playing) {
 
             System.out.print("Select column: ");
@@ -97,13 +98,17 @@ public class Main {
             else {
                 board.markPlayerChoice(row, col);
                 if (board.checkIfWin()){
-                    System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
                     playing = false;
+                    aWin = true;
                     board.showAllMines();
                 }
             }
             //Print board
             board.printBoard();
+            if ( aWin ){
+                System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
+            }
+
         }
     }
 
