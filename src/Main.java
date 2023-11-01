@@ -101,10 +101,22 @@ public class Main {
             else {
                 System.out.println("Well done, let's continue playing.. \n");
             }
-            System.out.print("Select column: ");
-            int col = board.posExistAndIsNotTakenAlready(scanner, "col");
-            System.out.print("Select row: ");
-            int row = board.posExistAndIsNotTakenAlready(scanner, "row");
+
+            //Initialize col and row
+            int col;
+            int row;
+
+            do {
+
+                 System.out.print("Select column: ");
+                 col = board.posExist(scanner, "col");
+                 System.out.print("Select row: ");
+                 row = board.posExist(scanner, "row");
+
+                if (!board.isNotTaken(row, col)){
+                    System.out.println("You've already opened that box. select another box\n");
+                }
+            } while (!board.isNotTaken(row, col));
 
             //Line break
             System.out.println();

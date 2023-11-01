@@ -101,7 +101,7 @@ public class Board {
         return this.mines;
     }
 
-    protected int posExistAndIsNotTakenAlready(Scanner scanner, String rowOrCol) {
+    protected int posExist(Scanner scanner, String rowOrCol) {
 
         int pos = Main.checkInputIsANumber(scanner);
         if (rowOrCol.equals("col")) {
@@ -118,6 +118,14 @@ public class Board {
         }
 
         return pos;
+    }
+    //Check if box is taken
+    protected boolean isNotTaken(int row, int col){
+
+        if (this.gameboard[col - 1][row - 1] == ' '){
+            return true;
+        }
+        return false;
     }
 
     private boolean isThisPositionAMine(int row, int col) {
