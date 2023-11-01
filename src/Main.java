@@ -1,7 +1,21 @@
 import java.util.Scanner;
 
 public class Main {
+    //Variables for the colored text
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String RED = "\u001B[31m";
+    public static final String BLACK = "\u001B[30m";
+
+    //Variables for colored backgrounds
+    public static final String WHITE_BACKGROUND = "\u001B[47m";
+
+    //resets colors and backgrounds to normal
+    public static final String RESET = "\u001B[0m";
+    
     public static void main(String[] args) {
+
+
 
         //Create scanner
         Scanner scanner = new Scanner(System.in);
@@ -14,7 +28,7 @@ public class Main {
         final int MINIMUM_COLS = 3;
 
         //Welcome message and setup board
-        System.out.println("Welcome to Mine Sweeper!");
+        System.out.println(WHITE_BACKGROUND + BLACK + "Welcome to Mine Sweeper!" + RESET);
 
         //Create player name
         System.out.println();
@@ -45,7 +59,7 @@ public class Main {
 
         //Create mines depending on level
         System.out.println();
-        System.out.println("1. Easy, 2. Medium, 3. Hard");
+        System.out.println(GREEN + "1. Easy, " + YELLOW +  "2. Medium, " + RED + "3. Hard" + RESET);
         System.out.print("Select level: ");
         int selectedLevel = checkLevelChoice(scanner);
 
@@ -81,7 +95,7 @@ public class Main {
             int row = board.posExistAndIsNotTakenAlready(scanner, "row");
 
             if (board.checkIfHit(row, col)) {
-                System.out.println(player.getName() + ", you hit a mine!\nGame Over!!!");
+                System.out.println(player.getName() + ", you hit a mine!" + RED + "\nGame Over!!!" + RESET);
                 playing = false;
                 board.showAllMines();
             }
