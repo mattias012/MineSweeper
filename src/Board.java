@@ -19,7 +19,6 @@ public class Board {
 
     private String symbol;
 
-
     public Board(int cols, int rows) {
 
         // Added 2 calls to setter methods for rows and cols to instantiate variables
@@ -33,10 +32,10 @@ public class Board {
 
     }
 
+    //Set number of mines
     private void setNumberOfMines(int mines) {
 
         this.numberOfMines = mines;
-
     }
 
     // Added a setter method for member variable cols
@@ -128,6 +127,7 @@ public class Board {
         return false;
     }
 
+    //Check if position is a mine
     private boolean isThisPositionAMine(int row, int col) {
 
         //List<Mine> mines = getMines();
@@ -144,16 +144,20 @@ public class Board {
         return foundMine;
     }
 
+    //Create a random number to place the mine(s)
     private int getRandomNumber(int min, int max) {
         return (int) ((random() * (max - min + 1)) + min);
     }
 
-
+    //Check if selected box is a hit
     public boolean checkIfHit(int row, int col) {
 
         return isThisPositionAMine(row, col);
     }
 
+    //Mark the selected box
+    //Display adjacent mines when open
+    //Open empty boxes close by
     public void markPlayerChoice(int row, int col) {
 
         char adjacentMines = '0';
@@ -188,12 +192,14 @@ public class Board {
         }
     }
 
+    //Display all mines when game is over
     public void showAllMines() {
         for (Mine mine : this.mines) {
             this.gameboard[mine.getCol() - 1][mine.getRow() - 1] = mine.getSymbol();
         }
     }
 
+    //Check if all boxes are selected and no hits, that would be a win!
     protected boolean checkIfWin() {
 
         boolean isWin = false;
@@ -201,7 +207,6 @@ public class Board {
         int numberOfMines = mines.size();
         int sumOfBoxesLeftToSelect = 0;
         int numberOfBoxes = this.rows * this.cols;
-
 
         for (int i = 0; i < this.cols; i++) {
             for (int j = 0; j < this.rows; j++) {
