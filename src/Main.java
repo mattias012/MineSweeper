@@ -43,7 +43,7 @@ public class Main {
             numberOfColumns = checkInputIsANumber(scanner);
             System.out.print("Number of rows: ");
             numberOfRows = checkInputIsANumber(scanner);
-        } while (numberOfColumns < MINIMUM_COLS && numberOfRows < MINIMUM_ROWS);
+        } while (numberOfColumns < MINIMUM_COLS || numberOfRows < MINIMUM_ROWS);
 
 
         //Create board
@@ -108,7 +108,6 @@ public class Main {
             if ( aWin ){
                 System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
             }
-
         }
     }
 
