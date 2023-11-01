@@ -9,9 +9,9 @@ public class Main {
 
     //resets colors to normal
     public static final String RESET = "\u001B[0m";
-    
+
     public static void main(String[] args) {
-        
+
         //Create scanner
         Scanner scanner = new Scanner(System.in);
 
@@ -32,7 +32,8 @@ public class Main {
         Player player = new Player(playerName);
         System.out.println();
 
-        System.out.println("How large battlefield do you want "+ player.getName() + "? (minimum "+ MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
+        //Print setup message
+        System.out.println("How large battlefield do you want " + player.getName() + "? (minimum " + MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
 
         int numberOfRows;
         int numberOfColumns;
@@ -43,10 +44,15 @@ public class Main {
             numberOfColumns = checkInputIsANumber(scanner);
             System.out.print("Number of rows: ");
             numberOfRows = checkInputIsANumber(scanner);
-        } while (numberOfColumns < MINIMUM_COLS && numberOfRows < MINIMUM_ROWS);
+
+            //Print message if board size is too small
+            if (numberOfColumns < MINIMUM_COLS || numberOfRows < MINIMUM_ROWS) {
+                System.out.println("Size of board must be at least + " + RED + "3 rows and 3 columns" + RESET + ", try again.");
+            }
+        } while (numberOfColumns < MINIMUM_COLS || numberOfRows < MINIMUM_ROWS);
 
 
-        //Create board
+        //Create board object
         Board board = new Board(numberOfColumns, numberOfRows);
 
         //Initialize the board
@@ -54,10 +60,13 @@ public class Main {
 
         //Create mines depending on level
         System.out.println();
-        System.out.println(GREEN + "1. Easy, " + YELLOW +  "2. Medium, " + RED + "3. Hard" + RESET);
+        System.out.println(GREEN + "1. Easy, " + YELLOW + "2. Medium, " + RED + "3. Hard" + RESET);
         System.out.print("Select level: ");
         int selectedLevel = checkLevelChoice(scanner);
 
+        System.out.println();
+
+        //Set number of mines depending on level
         int numberOfMines;
 
         if (selectedLevel == 3) {
@@ -69,7 +78,7 @@ public class Main {
         } else {
             //Easy
             //numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
-            numberOfMines = 1;
+            numberOfMines = 1; //For demo and testing
         }
 
         //Set the mines to the board
@@ -81,34 +90,64 @@ public class Main {
         //Play the game
         boolean playing = true;
         boolean aWin = false;
+        int counter = 0;
         while (playing) {
 
-            System.out.print("Select column: ");
-            int col = board.posExistAndIsNotTakenAlready(scanner, "col");
-
-            System.out.print("Select row: ");
-
-            int row = board.posExistAndIsNotTakenAlready(scanner, "row");
-
-            if (board.checkIfHit(row, col)) {
-                System.out.println(player.getName() + ", you hit a mine!" + RED + "\nGame Over!!!" + RESET);
-                playing = false;
-                board.showAllMines();
+            //Select column and row
+            //Make sure that the position is not already taken before
+            if (counter == 0){
+                System.out.println("Let's play! What is your first move?\n");
             }
             else {
+                System.out.println("Well done, let's continue playing.. \n");
+            }
+
+            //Initialize col and row
+            int col;
+            int row;
+
+            do {
+
+                 System.out.print("Select column: ");
+                 col = board.posExist(scanner, "col");
+                 System.out.print("Select row: ");
+                 row = board.posExist(scanner, "row");
+
+                if (!board.isNotTaken(row, col)){
+                    System.out.println("You've already opened that box. select another box\n");
+                }
+            } while (!board.isNotTaken(row, col));
+
+            //Line break
+            System.out.println();
+            //If hit, game over, show all mines and a better luck next time message
+            if (board.checkIfHit(row, col)) {
+
+                board.showAllMines();
+                board.printBoard();
+
+                System.out.println(player.getName() + ", you hit a mine!" + RED + "\nGame Over!!!" + RESET);
+                playing = false; //Do not continue playing
+
+            } else {
+
+                //Mark the box
                 board.markPlayerChoice(row, col);
-                if (board.checkIfWin()){
+
+                //Check if this mark will create a win
+                if (board.checkIfWin()) {
                     playing = false;
                     aWin = true;
                     board.showAllMines();
                 }
-            }
-            //Print board
-            board.printBoard();
-            if ( aWin ){
-                System.out.println("\n *** Congratulations "+player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
-            }
 
+                //Print board
+                board.printBoard();
+                if (aWin) {
+                    System.out.println("\n *** Congratulations " + player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
+                }
+            }
+            counter++; //increment counter
         }
     }
 
