@@ -5,18 +5,13 @@ public class Main {
     public static final String GREEN = "\u001B[32m";
     public static final String YELLOW = "\u001B[33m";
     public static final String RED = "\u001B[31m";
-    public static final String BLACK = "\u001B[30m";
+    public static final String BLUE = "\u001B[34m";
 
-    //Variables for colored backgrounds
-    public static final String WHITE_BACKGROUND = "\u001B[47m";
-
-    //resets colors and backgrounds to normal
+    //resets colors to normal
     public static final String RESET = "\u001B[0m";
     
     public static void main(String[] args) {
-
-
-
+        
         //Create scanner
         Scanner scanner = new Scanner(System.in);
 
@@ -28,7 +23,7 @@ public class Main {
         final int MINIMUM_COLS = 3;
 
         //Welcome message and setup board
-        System.out.println(WHITE_BACKGROUND + BLACK + "Welcome to Mine Sweeper!" + RESET);
+        System.out.println("Welcome to Mine Sweeper!");
 
         //Create player name
         System.out.println();

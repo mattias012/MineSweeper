@@ -357,7 +357,19 @@ public class Board {
 
             System.out.printf("Row%2d  |", row + 1);
             for (int col = 0; col < this.cols; col++) {
-                System.out.printf("   %C   |", this.gameboard[col][row]);
+                if (this.gameboard[col][row] <= '1'){
+                   System.out.printf(Main.BLUE + "   %C   " + Main.RESET + "|", this.gameboard[col][row]);
+                }
+                else if (this.gameboard[col][row] == '2'){
+                    System.out.printf(Main.YELLOW + "   %C   " + Main.RESET + "|", this.gameboard[col][row]);
+                }
+                else if (this.gameboard[col][row] >= '3'){
+                     System.out.printf(Main.RED + "   %C   " + Main.RESET + "|", this.gameboard[col][row]);
+                }
+                else {
+                    System.out.printf("   %C   |", this.gameboard[col][row]);
+                }
+
             }
             System.out.printf("%n");
         }
