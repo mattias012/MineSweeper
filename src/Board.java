@@ -163,89 +163,6 @@ public class Board {
         if (isThisPositionAMine(row + 1, col + 0 )) adjacentMines += 1;
         if (isThisPositionAMine(row + 1, col + 1 )) adjacentMines += 1;
 
-
-        /*
-        // first row of board
-        if (row == 1) {
-            // first column of board
-            if (col == 1) {
-                if (isThisPositionAMine(1, 2)) adjacentMines += 1;
-                if (isThisPositionAMine(2, 1)) adjacentMines += 1;
-                if (isThisPositionAMine(2, 2)) adjacentMines += 1;
-            } else {
-                // last column of board
-                if (col == this.cols) {
-                    if (isThisPositionAMine(1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(2, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(2, col)) adjacentMines += 1;
-                } else {
-                    // inside the board
-                    if (isThisPositionAMine(1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(1, col + 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(2, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(2, col)) adjacentMines += 1;
-                    if (isThisPositionAMine(2, col + 1)) adjacentMines += 1;
-                }
-            }
-        }
-
-        // inside the board
-        if (row > 1 && row < this.rows) {
-            // first column of board
-            if (col == 1) {
-                if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                if (isThisPositionAMine(row - 1, col + 1)) adjacentMines += 1;
-                if (isThisPositionAMine(row + 0, col + 1)) adjacentMines += 1;
-                if (isThisPositionAMine(row + 1, col + 0)) adjacentMines += 1;
-                if (isThisPositionAMine(row + 1, col + 1)) adjacentMines += 1;
-            } else {
-                // last column of board
-                if (col == this.cols) {
-                    if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 0, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 1, col + 0)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 1, col - 1)) adjacentMines += 1;
-                } else {
-                    // inside the board
-                    if (isThisPositionAMine(row - 1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col + 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 0, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 0, col + 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 1, col + 0)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 1, col + 1)) adjacentMines += 1;
-                }
-            }
-        }
-
-        // last row of board
-        if (row == this.rows) {
-            // first column of board
-            if (col == 1) {
-                if (isThisPositionAMine(row - 0, col + 1)) adjacentMines += 1;
-                if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                if (isThisPositionAMine(row - 1, col + 1)) adjacentMines += 1;
-            } else {
-                // last column of board
-                if (col == this.cols) {
-                    if (isThisPositionAMine(row + 0, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                } else {
-                    // inside the board
-                    if (isThisPositionAMine(row + 0, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row + 0, col + 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col - 1)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col + 0)) adjacentMines += 1;
-                    if (isThisPositionAMine(row - 1, col + 1)) adjacentMines += 1;
-                }
-            }
-
-        }
-        */
-
         this.gameboard[col - 1][row - 1] = adjacentMines;
 
         //Open up empty boxes
@@ -260,66 +177,12 @@ public class Board {
             markPlayerChoice( row + 1, col - 1);
             markPlayerChoice( row + 1, col + 0);
             markPlayerChoice( row + 1, col + 1);
-
-            /*
-            if (col == 1) {
-                if (row == 1) {
-                    markPlayerChoice(row, col + 1);
-                    markPlayerChoice(row + 1, col);
-                    markPlayerChoice(row + 1, col + 1);
-                } else if (row == this.rows) {
-                    markPlayerChoice(row, col + 1);
-                    markPlayerChoice(row - 1, col);
-                    markPlayerChoice(row - 1, col + 1);
-                } else {
-                    markPlayerChoice(row - 1, col);
-                    markPlayerChoice(row - 1, col + 1);
-                    markPlayerChoice(row + 1, col);
-                    markPlayerChoice(row + 1, col + 1);
-                    markPlayerChoice(row, col + 1);
-                }
-            } else if (col == this.cols) {
-
-                if (row == 1) {
-
-                    markPlayerChoice(row, col- 1);
-                    markPlayerChoice(row + 1, col);
-                    markPlayerChoice(row + 1, col - 1);
-
-                } else if (row == this.rows) {
-
-                    markPlayerChoice(row, col -1);
-                    markPlayerChoice(row - 1, col);
-                    markPlayerChoice(row - 1, col - 1);
-
-                } else {
-                    markPlayerChoice(row - 1, col-1);
-                    markPlayerChoice(row - 1, col);
-                    markPlayerChoice(row, col-1);
-                    markPlayerChoice(row + 1, col-1);
-                    markPlayerChoice(row+1, col);
-                }
-            } else {
-                markPlayerChoice(row - 1, col - 1);
-                markPlayerChoice(row - 1, col);
-                markPlayerChoice(row - 1, col + 1);
-                markPlayerChoice(row, col - 1);
-                markPlayerChoice(row, col + 1);
-                markPlayerChoice(row + 1, col - 1);
-                markPlayerChoice(row + 1, col);
-                markPlayerChoice(row + 1, col + 1);
-            }
-
-             */
         }
     }
 
     public void showAllMines() {
-
         for (Mine mine : this.mines) {
-
             this.gameboard[mine.getCol() - 1][mine.getRow() - 1] = mine.getSymbol();
-
         }
     }
 
