@@ -77,8 +77,8 @@ public class Main {
             numberOfMines = (int) (PERCENTAGE_MEDIUM * numberOfRows * numberOfColumns);
         } else {
             //Easy
-            //numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
-            numberOfMines = 1; //For demo and testing
+            numberOfMines = (int) (PERCENTAGE_EASY * numberOfRows * numberOfColumns);
+            //numberOfMines = 2; //For demo and testing
         }
 
         //Set the mines to the board
@@ -107,7 +107,6 @@ public class Main {
             int row;
 
             do {
-
                  System.out.print("Select column: ");
                  col = board.posExist(scanner, "col");
                  System.out.print("Select row: ");
@@ -152,13 +151,13 @@ public class Main {
     }
 
     //Error handling methods
+    //Create checkInputIsANumber method to check if the user input is a number
     public static int checkInputIsANumber(Scanner scanner) {
 
         while (true) {
             try {
                 String inputFromUser = scanner.nextLine().trim();
-                int input = Integer.parseInt(inputFromUser);
-                return input;
+                return Integer.parseInt(inputFromUser);
             } catch (Exception e) {
                 System.out.println("Only numbers please, try again.");
             }

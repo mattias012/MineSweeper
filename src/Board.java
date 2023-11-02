@@ -1,27 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 import static java.lang.Math.random;
 
+// Board class declaration
 public class Board {
 
-    private char[][] gameboard;
-    private List<Mine> mines;
-    private int numberOfMines;
+    // Private fields
+    private final char[][] gameboard;
+    private final List<Mine> mines;
+    private int numberOfMines; //
+    private final String symbol;
+    private int cols; // Add a member variable to hold the number of columns in gameboard
+    private int rows;   // Add a member variable to hold the number of rows in gameboard
 
-    // Added a member variable to hold the number of columns in gameboard
-    private int cols;
-
-    // Added a member variable to hold the number of rows in gameboard
-    private int rows;
-
-    private String symbol;
-
+    //Create the constructor of the class Board
     public Board(int cols, int rows) {
 
-        // Added 2 calls to setter methods for rows and cols to instantiate variables
+        // Add 2 calls to setter methods for rows and cols to instantiate variables
         setRows(rows);
         setCols(cols);
 
@@ -29,40 +26,36 @@ public class Board {
         this.gameboard = new char[cols][rows];
         this.mines = new ArrayList<>();
         this.symbol = " ";
-
     }
 
-    //Set number of mines
-    private void setNumberOfMines(int mines) {
+    // Getters and setters
+    private int getCols() { // Add a getter method for member variable cols
+        return this.cols;
+    }
+    private void setCols(int cols) { // Add a setter method for member variable cols
+        this.cols = cols;
+    }
+
+    private int getRows() { // Add a getter method for member variable rows
+        return this.rows;
+    }
+    private void setRows(int rows) { // Add a setter method for member variable rows
+        this.rows = rows;
+    }
+
+    private int getNumberOfMines() { // Add a getter method for to get number of mines
+        return this.numberOfMines;
+    }
+    private void setNumberOfMines(int mines) { // Add a getter method for to set number of mines
 
         this.numberOfMines = mines;
     }
 
-    // Added a setter method for member variable cols
-    private void setCols(int cols) {
-        this.cols = cols;
+    public List<Mine> getMines() { //Add a getter method for to get the list of mines
+        return this.mines;
     }
 
-    // Added a getter method for member variable cols
-    private int getCols() {
-        return this.cols;
-    }
-
-    // Added a setter method for member variable rows
-    private void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    // Added a getter method for member variable rows
-    private int getRows() {
-        return this.rows;
-    }
-
-
-    private int getNumberOfMines() {
-        return this.numberOfMines;
-    }
-
+    //Create initBoard method to initialize the board
     public void initBoard() {
 
         //Set blank space for board
@@ -73,6 +66,7 @@ public class Board {
         }
     }
 
+    //Create setMines method that creates the mines according to the number of mines
     public void setMines(int setThisNumberOfMines) {
 
         setNumberOfMines(setThisNumberOfMines);
@@ -96,10 +90,6 @@ public class Board {
         }
     }
 
-    public List<Mine> getMines() {
-        return this.mines;
-    }
-
     protected int posExist(Scanner scanner, String rowOrCol) {
 
         int pos = Main.checkInputIsANumber(scanner);
@@ -115,10 +105,10 @@ public class Board {
                 pos = Main.checkInputIsANumber(scanner);
             }
         }
-
         return pos;
     }
-    //Check if box is taken
+
+    //Create isNotTaken method to check if box is taken
     protected boolean isNotTaken(int row, int col){
 
         if (this.gameboard[col - 1][row - 1] == ' '){
@@ -127,7 +117,7 @@ public class Board {
         return false;
     }
 
-    //Check if position is a mine
+    //Create isThisPositionAMine to check if position is a mine
     private boolean isThisPositionAMine(int row, int col) {
 
         //List<Mine> mines = getMines();
@@ -144,20 +134,21 @@ public class Board {
         return foundMine;
     }
 
-    //Create a random number to place the mine(s)
+    //Create getRandomNumber method to create a random number to place the mine(s)
     private int getRandomNumber(int min, int max) {
         return (int) ((random() * (max - min + 1)) + min);
     }
 
-    //Check if selected box is a hit
+    //Create checkIfHit method to check if selected box is a hit
     public boolean checkIfHit(int row, int col) {
 
         return isThisPositionAMine(row, col);
     }
 
-    //Mark the selected box
-    //Display adjacent mines when open
-    //Open empty boxes close by
+
+    // Create markPlayerChoice method to mark the selected box
+    // Display adjacent mines when open
+    // Open empty boxes close by
     public void markPlayerChoice(int row, int col) {
 
         char adjacentMines = '0';
@@ -223,9 +214,7 @@ public class Board {
         return isWin;
     }
 
-    // Changed the method to print the whole board
-    // instead of a method just returning a string
-    //public String toString() {
+    // Create printBoard method to print the whole board to console
     public void printBoard() {
 
         for (int col = 0; col < this.cols; col++) {
