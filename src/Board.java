@@ -28,31 +28,17 @@ public class Board {
         this.symbol = " ";
     }
 
-    // Getters and setters
-    private int getCols() { // Add a getter method for member variable cols
-        return this.cols;
-    }
     private void setCols(int cols) { // Add a setter method for member variable cols
         this.cols = cols;
     }
 
-    private int getRows() { // Add a getter method for member variable rows
-        return this.rows;
-    }
     private void setRows(int rows) { // Add a setter method for member variable rows
         this.rows = rows;
     }
 
-    private int getNumberOfMines() { // Add a getter method for to get number of mines
-        return this.numberOfMines;
-    }
     private void setNumberOfMines(int mines) { // Add a getter method for to set number of mines
 
         this.numberOfMines = mines;
-    }
-
-    public List<Mine> getMines() { //Add a getter method for to get the list of mines
-        return this.mines;
     }
 
     //Create initBoard method to initialize the board
@@ -111,10 +97,7 @@ public class Board {
     //Create isNotTaken method to check if box is taken
     protected boolean isNotTaken(int row, int col){
 
-        if (this.gameboard[col - 1][row - 1] == ' '){
-            return true;
-        }
-        return false;
+        return this.gameboard[col - 1][row - 1] == ' ';
     }
 
     //Create isThisPositionAMine to check if position is a mine
@@ -129,6 +112,7 @@ public class Board {
 
             if (row == mine.getRow() && col == mine.getCol()) {
                 foundMine = true;
+                break;
             }
         }
         return foundMine;
@@ -158,12 +142,12 @@ public class Board {
         if ( this.gameboard[ col - 1 ][ row - 1 ] != ' ' ) return;
 
         if (isThisPositionAMine(row - 1, col - 1 )) adjacentMines += 1;
-        if (isThisPositionAMine(row - 1, col + 0 )) adjacentMines += 1;
+        if (isThisPositionAMine(row - 1, col)) adjacentMines += 1;
         if (isThisPositionAMine(row - 1, col + 1 )) adjacentMines += 1;
-        if (isThisPositionAMine(row + 0, col - 1 )) adjacentMines += 1;
-        if (isThisPositionAMine(row + 0, col + 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row, col - 1 )) adjacentMines += 1;
+        if (isThisPositionAMine(row, col + 1 )) adjacentMines += 1;
         if (isThisPositionAMine(row + 1, col - 1 )) adjacentMines += 1;
-        if (isThisPositionAMine(row + 1, col + 0 )) adjacentMines += 1;
+        if (isThisPositionAMine(row + 1, col)) adjacentMines += 1;
         if (isThisPositionAMine(row + 1, col + 1 )) adjacentMines += 1;
 
         this.gameboard[col - 1][row - 1] = adjacentMines;
@@ -173,12 +157,12 @@ public class Board {
         //method inside method
         if (adjacentMines == '0') {
             markPlayerChoice( row - 1, col - 1);
-            markPlayerChoice( row - 1, col + 0);
+            markPlayerChoice( row - 1, col);
             markPlayerChoice( row - 1, col + 1);
-            markPlayerChoice( row + 0, col - 1);
-            markPlayerChoice( row + 0, col + 1);
+            markPlayerChoice(row, col - 1);
+            markPlayerChoice(row, col + 1);
             markPlayerChoice( row + 1, col - 1);
-            markPlayerChoice( row + 1, col + 0);
+            markPlayerChoice( row + 1, col);
             markPlayerChoice( row + 1, col + 1);
         }
     }
@@ -228,7 +212,7 @@ public class Board {
         System.out.println();
 
         //char aChar = 'X';
-        System.out.printf("         ");
+        System.out.print("         ");
         for (int col = 1; col <= this.cols; col++) {
             System.out.printf("Col%2d   ", col);
         }

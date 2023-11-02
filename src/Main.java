@@ -33,7 +33,7 @@ public class Main {
         System.out.println();
 
         //Print setup message
-        System.out.println("How large battlefield do you want " + player.getName() + "? (minimum " + MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
+        System.out.println("How large battlefield do you want " + player.name() + "? (minimum " + MINIMUM_ROWS + " x " + MINIMUM_COLS + ")\n");
 
         int numberOfRows;
         int numberOfColumns;
@@ -125,7 +125,7 @@ public class Main {
                 board.showAllMines();
                 board.printBoard();
 
-                System.out.println(player.getName() + ", you hit a mine!" + RED + "\nGame Over!!!" + RESET);
+                System.out.println(player.name() + ", you hit a mine!" + RED + "\nGame Over!!!" + RESET);
                 playing = false; //Do not continue playing
 
             } else {
@@ -143,7 +143,7 @@ public class Main {
                 //Print board
                 board.printBoard();
                 if (aWin) {
-                    System.out.println("\n *** Congratulations " + player.getName() + "! You have found all mines, that is not easy - well done! ***\n");
+                    System.out.println("\n *** Congratulations " + player.name() + "! You have found all mines, that is not easy - well done! ***\n");
                 }
             }
             counter++; //increment counter

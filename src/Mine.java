@@ -2,9 +2,9 @@
 public class Mine {
 
     //Private fields
-    private int row;
-    private int col;
-    private char symbol;
+    private final int row;
+    private final int col;
+    private final char symbol;
 
     //Constructor
     public Mine(int row, int col){
